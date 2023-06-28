@@ -1,17 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const countSlice = createSlice({
     name: 'count',
-    initialState: 0,
+    initialState: [
+        {
+            id: 0,
+            name: 'Air Jordan',
+            price: '1000'
+        }
+    ],
     reducers: {
-        increase(state, action) {
-            return state + 1
-        },
-        decrease(state, action) {
-            return state - 1
-        }   
+        remove: (state, action) => {
+            return state.filter(p => p.id !== action.payload)
+        }
     }
 })
-// const { actions, reducer } = countSlice
-export const { increase, decrease } = countSlice.actions;
-export default countSlice.reducer;
+const { actions, reducer } = countSlice
+export const { remove } = actions
+export default reducer
